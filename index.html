@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dr. Rejaul Karim — Statistician & Data Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:      #1a1c22;
+      --navy:     #1e2d4a;
+      --accent:   #8b3a2e;
+      --muted:    #5a6175;
+      --rule:     #c8cdd9;
+      --bg:       #f5f3ee;
+      --card:     #faf9f6;
+      --serif:    'EB Garamond', Georgia, serif;
+      --sans:     'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    nav .brand {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: #d4c9b5;
+      letter-spacing: .03em;
+    }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav a {
+      color: #9baac4;
+      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    nav a:hover { color: #fff; }
+
+    /* HERO */
+    header {
+      background: var(--navy);
+      color: #fff;
+      padding: 5rem 0 4.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 39px,
+        rgba(255,255,255,.04) 39px, rgba(255,255,255,.04) 40px
+      );
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; }
+    .hero-eyebrow {
+      font-size: .78rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #8b9fc4;
+      margin-bottom: 1.2rem;
+    }
+    header h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 500;
+      color: #eee9de;
+      line-height: 1.15;
+      margin-bottom: .5rem;
+    }
+    header h1 span { color: #c8a882; font-style: italic; }
+    .hero-sub {
+      font-size: 1rem;
+      color: #8b9fc4;
+      letter-spacing: .04em;
+      margin-bottom: 2.2rem;
+    }
+    .hero-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .7rem 1.8rem;
+      font-size: .84rem;
+      color: #9baac4;
+    }
+    .hero-contacts a { color: #9baac4; text-decoration: none; transition: color .2s; }
+    .hero-contacts a:hover { color: #fff; }
+    .hero-contacts span { display: flex; align-items: center; gap: .35rem; }
+    .hero-cta {
+      margin-top: 2.4rem;
+      display: inline-block;
+      border: 1px solid #8b3a2e;
+      background: transparent;
+      color: #c8a882;
+      padding: .65rem 2rem;
+      font-family: var(--sans);
+      font-size: .82rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .hero-cta:hover { background: #8b3a2e; color: #fff; }
+
+    /* LAYOUT */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+    main { padding: 4.5rem 0 6rem; }
+
+    /* SECTION */
+    section { margin-bottom: 4rem; animation: fadeUp .6s ease both; }
+    section:nth-child(2) { animation-delay: .1s; }
+    section:nth-child(3) { animation-delay: .2s; }
+    section:nth-child(4) { animation-delay: .3s; }
+    section:nth-child(5) { animation-delay: .4s; }
+    section:nth-child(6) { animation-delay: .5s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-label {
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: .6rem;
+    }
+    h2 {
+      font-family: var(--serif);
+      font-size: 1.7rem;
+      font-weight: 500;
+      color: var(--navy);
+      border-bottom: 1.5px solid var(--rule);
+      padding-bottom: .55rem;
+      margin-bottom: 1.6rem;
+    }
+
+    /* SUMMARY */
+    .summary-text {
+      font-family: var(--serif);
+      font-size: 1.13rem;
+      color: #2e3444;
+      line-height: 1.85;
+      max-width: 760px;
+    }
+
+    /* EDUCATION */
+    .edu-grid { display: grid; gap: 1.1rem; }
+    .edu-card {
+      background: var(--card);
+      border-left: 3px solid var(--accent);
+      padding: 1.1rem 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .edu-card h3 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+    .edu-card p { font-size: .87rem; color: var(--muted); margin-top: .15rem; }
+    .edu-year { font-size: .8rem; color: var(--muted); white-space: nowrap; padding-top: .15rem; }
+
+    /* EXPERIENCE */
+    .exp-list { display: grid; gap: 1.8rem; }
+    .exp-item { position: relative; padding-left: 1.3rem; }
+    .exp-item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: .55rem;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .exp-header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+    .exp-title { font-family: var(--serif); font-size: 1.08rem; font-weight: 500; color: var(--navy); }
+    .exp-period { font-size: .8rem; color: var(--muted); white-space: nowrap; }
+    .exp-org { font-size: .86rem; color: var(--accent); margin: .1rem 0 .5rem; font-style: italic; }
+    .exp-bullets { list-style: none; }
+    .exp-bullets li {
+      font-size: .9rem;
+      color: #3a3f52;
+      padding: .18rem 0;
+      display: flex;
+      gap: .5rem;
+    }
+    .exp-bullets li::before { content: '—'; color: var(--rule); flex-shrink: 0; }
+
+    /* INTERESTS */
+    .interests-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 3rem; }
+    .interests-group h3 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: .7rem;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: .35rem;
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .tag {
+      font-size: .78rem;
+      padding: .25rem .7rem;
+      border: 1px solid var(--rule);
+      color: var(--muted);
+      background: var(--card);
+    }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.3rem; }
+    .skill-card {
+      background: var(--card);
+      border-top: 2px solid var(--navy);
+      padding: 1.1rem 1.2rem;
+    }
+    .skill-card h3 {
+      font-size: .75rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--navy);
+      font-weight: 500;
+      margin-bottom: .6rem;
+    }
+    .skill-card p { font-size: .86rem; color: var(--muted); line-height: 1.6; }
+
+    /* PUBLICATIONS */
+    .pub-list { list-style: none; display: grid; gap: 1.1rem; }
+    .pub-list li {
+      padding: 1rem 1.3rem;
+      background: var(--card);
+      font-size: .9rem;
+      color: #3a3f52;
+      border-left: 3px solid var(--rule);
+      line-height: 1.7;
+    }
+    .pub-list li strong { color: var(--navy); font-weight: 500; }
+    .pub-venue {
+      display: inline-block;
+      font-size: .76rem;
+      color: var(--accent);
+      font-style: italic;
+      margin-top: .25rem;
+    }
+
+    /* REFERENCES */
+    .ref-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.2rem; }
+    .ref-card {
+      background: var(--card);
+      padding: 1.2rem 1.3rem;
+      border-bottom: 2px solid var(--accent);
+    }
+    .ref-card h3 { font-family: var(--serif); font-size: 1rem; color: var(--navy); font-weight: 500; margin-bottom: .2rem; }
+    .ref-card .ref-role { font-size: .8rem; color: var(--muted); margin-bottom: .5rem; line-height: 1.5; }
+    .ref-card a { font-size: .83rem; color: var(--accent); text-decoration: none; }
+    .ref-card a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      color: #6e83a8;
+      text-align: center;
+      padding: 2rem;
+      font-size: .8rem;
+      letter-spacing: .04em;
+    }
+    footer span { color: var(--accent); }
+    footer a { color: #6e83a8; }
+
+    @media (max-width: 640px) {
+      nav ul { display: none; }
+      .interests-cols { grid-template-columns: 1fr; }
+      .edu-card { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Dr. Rejaul Karim</span>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+
+<header>
+  <div class="container hero-inner">
+    <p class="hero-eyebrow">Academic Portfolio &amp; Professional Profile</p>
+    <h1>Dr. Rejaul Karim, <span>PhD</span></h1>
+    <p class="hero-sub">Statistician &middot; Data Scientist &middot; Academic Researcher</p>
+    <div class="hero-contacts">
+      <span>&#128205; Washington, DC</span>
+      <span>&#128222; <a href="tel:+17343589054">+1-734-358-9054</a></span>
+      <span>&#9993;&#65039; <a href="mailto:karimrej@msu.edu">karimrej@msu.edu</a></span>
+      <span>&#128279; <a href="https://linkedin.com/in/rejaul-karim98004817" target="_blank">LinkedIn</a></span>
+    </div>
+    <a class="hero-cta" href="mailto:karimrej@msu.edu">Open to Academic &amp; Research Positions</a>
+  </div>
+</header>
+
+<main>
+<div class="container">
+
+  <section id="about">
+    <p class="section-label">Profile</p>
+    <h2>Professional Summary</h2>
+    <p class="summary-text">
+      PhD-qualified statistician and data scientist with extensive experience spanning academic research,
+      university teaching, regulatory science, and industry applications. Proven expertise in
+      high-dimensional statistical modeling, machine learning, and computational methods. Demonstrated
+      success teaching undergraduate and graduate courses, conducting cutting-edge research, and
+      developing predictive models for healthcare, engineering, and cybersecurity. Strong communicator
+      with a record of mentoring students and collaborating across interdisciplinary teams.
+    </p>
+  </section>
+
+  <section id="education">
+    <p class="section-label">Academic Background</p>
+    <h2>Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div>
+          <h3>PhD in Statistics</h3>
+          <p>Michigan State University, USA &mdash; Dissertation: <em>High-Dimensional Statistical Modeling for Longitudinal and Spatial Data</em></p>
+        </div>
+        <span class="edu-year">2014 &ndash; 2019</span>
+      </div>
+      <div class="edu-card">
+        <div>
+          <h3>Master of Statistics</h3>
+          <p>Indian Statistical Institute</p>
+        </div>
+        <span class="edu-year">2011 &ndash; 2013</span>
+      </div>
+      <div class="edu-card">
+        <div>
+          <h3>Master of Data Science</h3>
+          <p>New England College</p>
+        </div>
+        <span class="edu-year">2022 &ndash; 2024</span>
+      </div>
+      <div class="edu-card">
+        <div>
+          <h3>Master of Management Science (Information Technology)</h3>
+          <p>Faulkner University</p>
+        </div>
+        <span class="edu-year">2025 &ndash; Present</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <p class="section-label">Career History</p>
+    <h2>Professional Experience</h2>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">Data Scientist &ndash; Risk Analytics</span>
+          <span class="exp-period">Aug 2024 &ndash; Nov 2026</span>
+        </div>
+        <p class="exp-org">Reenar IT LLC, USA</p>
+        <ul class="exp-bullets">
+          <li>Develop statistical and machine learning models for cybersecurity and fraud detection</li>
+          <li>Apply regression, classification, and anomaly detection to identify security threats</li>
+          <li>Provide technical guidance for data science initiatives across teams</li>
+          <li>Utilize R, Python, and cloud platforms for scalable model deployment</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">Research Fellow &ndash; Office of Biostatistics</span>
+          <span class="exp-period">Dec 2022 &ndash; Jul 2024</span>
+        </div>
+        <p class="exp-org">U.S. Food and Drug Administration (FDA), Washington, DC</p>
+        <ul class="exp-bullets">
+          <li>Applied linear and mixed-effects models to regulatory evaluation of clinical trials and medical devices</li>
+          <li>Contributed to statistical analysis plans (SAPs) for AI/ML-based medical devices</li>
+          <li>Conducted large-scale data analyses using R and SAS for regulatory decision-making</li>
+          <li>Participated in interdisciplinary scientific meetings and technical review processes</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">Data Scientist</span>
+          <span class="exp-period">May 2022 &ndash; Dec 2022</span>
+        </div>
+        <p class="exp-org">Cognomotiv Inc., USA</p>
+        <ul class="exp-bullets">
+          <li>Developed predictive maintenance models using sensor data and time-series analysis</li>
+          <li>Applied supervised and self-supervised learning to optimize industrial processes</li>
+          <li>Supervised junior data scientists and collaborated on model deployment</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">Research Assistant &ndash; Department of Statistics</span>
+          <span class="exp-period">Sep 2020 &ndash; Sep 2021</span>
+        </div>
+        <p class="exp-org">University of Minnesota</p>
+        <ul class="exp-bullets">
+          <li>Developed simulation-based statistical models for complex physical sciences applications</li>
+          <li>Applied advanced regression and computational modeling to scientific data</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">Research Assistant &ndash; Biostatistics</span>
+          <span class="exp-period">Oct 2019 &ndash; Aug 2020</span>
+        </div>
+        <p class="exp-org">Harvard University, Boston, MA</p>
+        <ul class="exp-bullets">
+          <li>Developed ordinal regression and causal modeling frameworks for healthcare applications</li>
+          <li>Built statistical pipelines for analyzing multimodal healthcare data</li>
+          <li>Mentored PhD students in longitudinal modeling and advanced statistical methods</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">Graduate Research Assistant &amp; Instructor</span>
+          <span class="exp-period">Aug 2014 &ndash; Aug 2019</span>
+        </div>
+        <p class="exp-org">Department of Statistics, Michigan State University</p>
+        <ul class="exp-bullets">
+          <li>Taught undergraduate and graduate courses in Probability Theory, Mathematical Statistics, and Statistical Computing</li>
+          <li>Designed syllabi, lecture materials, assignments, and examinations</li>
+          <li>Conducted office hours and academic advising for student support</li>
+          <li>Supervised undergraduate and graduate students in research projects</li>
+          <li>Developed high-dimensional sparse learning methods for spatial and longitudinal data</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="research">
+    <p class="section-label">Scholarly Focus</p>
+    <h2>Teaching &amp; Research Interests</h2>
+    <div class="interests-cols">
+      <div class="interests-group">
+        <h3>Teaching Interests</h3>
+        <div class="tag-row">
+          <span class="tag">Probability Theory</span>
+          <span class="tag">Mathematical Statistics</span>
+          <span class="tag">Statistical Inference</span>
+          <span class="tag">Regression Analysis</span>
+          <span class="tag">Applied Statistics</span>
+          <span class="tag">Statistical Computing</span>
+          <span class="tag">R &middot; Python &middot; SAS</span>
+          <span class="tag">Linear Algebra</span>
+          <span class="tag">Calculus</span>
+          <span class="tag">Intro to Data Science</span>
+        </div>
+      </div>
+      <div class="interests-group">
+        <h3>Research Interests</h3>
+        <div class="tag-row">
+          <span class="tag">Statistical Learning</span>
+          <span class="tag">High-Dimensional Analysis</span>
+          <span class="tag">Longitudinal &amp; Spatial Modeling</span>
+          <span class="tag">Causal Inference</span>
+          <span class="tag">AI/ML Evaluation</span>
+          <span class="tag">Health Statistics</span>
+          <span class="tag">Engineering Applications</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:2.4rem;">
+      <p class="section-label" style="margin-bottom:.6rem;">Technical Skills</p>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Statistical Methods</h3>
+          <p>Regression Models, Mixed-Effects Models, Bayesian Methods, Machine Learning, Causal Inference</p>
+        </div>
+        <div class="skill-card">
+          <h3>Software</h3>
+          <p>R, SAS, Python, MATLAB</p>
+        </div>
+        <div class="skill-card">
+          <h3>Computing</h3>
+          <p>Git, UNIX, HPC, AWS Cloud, Learning Management Systems</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <p class="section-label">Scholarly Output</p>
+    <h2>Selected Publications</h2>
+    <ul class="pub-list">
+      <li>
+        <strong>Karim, R., Li, P., &amp; Maiti, T. (2020).</strong> Tensor Ensemble Classifier.
+        <br><span class="pub-venue">arXiv:2103.00025</span>
+      </li>
+      <li>
+        <strong>Karim, R., Lim, C. Y., Maiti, T., &amp; Sarkar, A. (2023).</strong>
+        High-Dimensional Sparse Penalized-LDA for Spatio-Temporal Data with Application to Neuroimaging.
+        <br><span class="pub-venue">JSM Proceedings</span>
+      </li>
+      <li>
+        <strong>Karim, R., Cha, K., Pennello, G., &amp; Hu, T. (2024).</strong>
+        A Survey of Multiclass Classification Evaluation Metrics in Computer Imaging.
+        <br><span class="pub-venue">Manuscript in preparation</span>
+      </li>
+      <li>
+        <strong>Karim, R., &amp; Maiti, T. (2019).</strong> Kronecker Random Projection on Tensor.
+        <br><span class="pub-venue">Joint Statistical Meetings (JSM)</span>
+      </li>
+      <li>
+        <strong>Sherman, K., Chatterjee, S., Karim, R., et al. (2021).</strong>
+        Machine Learning the Long-Time Dynamics of Spin Ice.
+        <br><span class="pub-venue">APS Meeting</span>
+      </li>
+      <li>
+        <strong>Zoscak, J., Karim, R., Johannesen, L., &amp; Ruiz, J. V. (2024).</strong>
+        Leveraging Data Standards and QT Technical Specifications to Advance Regulatory Science.
+        <br><span class="pub-venue">FDA Scientific Computing Day</span>
+      </li>
+    </ul>
+  </section>
+
+  <section id="references">
+    <p class="section-label">Professional References</p>
+    <h2>References</h2>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <h3>Prof. Taps Maiti</h3>
+        <p class="ref-role">Professor, Department of Statistics<br>Michigan State University</p>
+        <a href="mailto:maiti@msu.edu">maiti@msu.edu</a>
+      </div>
+      <div class="ref-card">
+        <h3>Prof. Tianxi Cai</h3>
+        <p class="ref-role">Professor, Department of Biostatistics<br>Harvard T.H. Chan School of Public Health</p>
+        <a href="mailto:tcai@hsph.harvard.edu">tcai@hsph.harvard.edu</a>
+      </div>
+      <div class="ref-card">
+        <h3>Dr. Gene Pennello</h3>
+        <p class="ref-role">Mathematical Statistician<br>U.S. Food and Drug Administration</p>
+        <a href="mailto:gene.pennello@fda.hhs.gov">gene.pennello@fda.hhs.gov</a>
+      </div>
+    </div>
+    <p style="margin-top:1rem; font-size:.85rem; color:var(--muted);">Additional references available upon request.</p>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <p>&copy; 2025 <span>Dr. Rejaul Karim</span> &mdash; Washington, DC &mdash; <a href="mailto:karimrej@msu.edu">karimrej@msu.edu</a></p>
+</footer>
+
+</body>
+</html>
